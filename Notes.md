@@ -10,6 +10,8 @@ JS Mantra: When some event happens, I want to make what kind of fetch and then m
 
 Things to fix:
 [ ] do not repeat question
+[ ] when refresh, everything is gone?
+[ ] how to make sure it is clear before new append everytime?
 
 
 
