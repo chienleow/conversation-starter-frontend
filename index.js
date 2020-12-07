@@ -1,13 +1,14 @@
 const endPoint = "http://localhost:3000/api/v1/questions"
 
 document.addEventListener('DOMContentLoaded', () => {
-    getQuestions()
+    getOneQuestion()
 })
 
-function getQuestions() {
+function getOneQuestion() {
     fetch(endPoint)
     .then(response => response.json())
     .then(questions => {
-        console.log(questions);
+        const random = questions.data[Math.floor(Math.random() * questions.data.length)];
+        console.log(random);
     })
 }
