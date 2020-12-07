@@ -1,7 +1,8 @@
 const endPoint = "http://localhost:3000/api/v1/questions"
+const openQuestion = document.querySelector("#open-question");
 
 document.addEventListener('DOMContentLoaded', () => {
-    getOneQuestion()
+    openQuestion.addEventListener("click", getOneQuestion);
 })
 
 function getOneQuestion() {
@@ -9,6 +10,7 @@ function getOneQuestion() {
     .then(response => response.json())
     .then(questions => {
         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
-        console.log(random);
+        const oneQuestion = random.attributes.question;
+        document.querySelector('#question-container').innerHTML += oneQuestion;
     })
 }
