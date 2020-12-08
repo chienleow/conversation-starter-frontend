@@ -21,8 +21,9 @@ function getQuestion() {
     .then(questions => {
         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
         const oneQuestion = random.attributes.question;
+        const questionAuthor = random.attributes.user.username
         
-        document.querySelector('#question-container').innerHTML += oneQuestion;
+        document.querySelector('#question-container').innerHTML += `"${oneQuestion}"` + ` - ${questionAuthor}`;
     })
 }
 
