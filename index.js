@@ -36,11 +36,23 @@ function clearContainer() {
 function postForm(e) {
     e.preventDefault()
     const usernameInput = document.querySelector("#username").value
-    const questionInputOne = document.querySelector("#question1").value
-    postFetch(usernameInput, questionInputOne)
+    const questionInput = document.querySelectorAll("#question").value
+    // console.log(usernameInput, questionInput)
+    postFetch(usernameInput, questionInput)
     // question: can I select all my questions at once?
 }
 
-function postFetch(username, question_one) {
-    console.log(username, question_one);
+function postFetch(username, question) {
+    fetch(endPoint, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            username: username,
+            question: question,
+        })
+    })
+    .then(response => response.json())
+    .then(question => {
+        console.log(question);
+    })
 }
