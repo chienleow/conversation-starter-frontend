@@ -10,8 +10,10 @@ JS Mantra: When some event happens, I want to make what kind of fetch and then m
 
 Things to fix:
 [ ] do not repeat question
+// 1. label each question and use filter to filter all opened questions
+// 2. first shuffled all questions, then display them one by one
 [ ] when refresh, everything is gone?
-[ ] how to make sure it is clear before new append everytime?
+[ ] how to make sure it is clear before new append every time?
 
 
 
