@@ -10,7 +10,7 @@ function displayQuestion() {
     if (questionContainer == "") {
         getQuestion
     } else {
-        clearContainer();
+        clearContainer(); // run this first?
         getQuestion();
     }
 }
