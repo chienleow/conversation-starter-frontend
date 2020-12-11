@@ -21,24 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // OR 2. push every time in a trash array
 // when I am passing getQuestion(), pass in 2 arguments (unaskedQuestions, shuffleMethod)
 
-function shuffleMethod(questionsArray) {
-    const currentIndex = questionsArray.length, temporaryValue, randomIndex;
+// function shuffleMethod(questionsArray) {
+//     const currentIndex = questionsArray.length, temporaryValue, randomIndex;
   
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+//     // While there remain elements to shuffle...
+//     while (0 !== currentIndex) {
   
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+//       // Pick a remaining element...
+//       randomIndex = Math.floor(Math.random() * currentIndex);
+//       currentIndex -= 1;
   
-      // And swap it with the current element.
-      temporaryValue = questionsArray[currentIndex];
-      questionsArray[currentIndex] = questionsArray[randomIndex];
-      questionsArray[randomIndex] = temporaryValue;
-    }
+//       // And swap it with the current element.
+//       temporaryValue = questionsArray[currentIndex];
+//       questionsArray[currentIndex] = questionsArray[randomIndex];
+//       questionsArray[randomIndex] = temporaryValue;
+//     }
   
-    return questionsArray;
-}
+//     return questionsArray;
+// }
 
 function getQuestion() {
     fetch(endPoint)
