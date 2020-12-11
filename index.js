@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     createForm.addEventListener("submit", (e) => postForm(e));
 })
 
+
+// button called "shuffle"
+// go through the array from element 1 - 20, once we hit the bottom of the array, display game over
+
+// stretch goal: trash box
+// put it first thing in DOMContentLoaded, create a variable, push the question_id to the trash array
+// 1. const unaskedQuestions = questions.filter(question => question.id !== askedQuestion);
+// OR 2. push every time in a trash array
+// when I am passing getQuestion(), pass in 2 arguments (unaskedQuestions, shuffleMethod)
+
+
 function getQuestion() {
     fetch(endPoint)
     .then(response => response.json())
