@@ -40,45 +40,22 @@ function postForm(e) {
     e.preventDefault()
     const usernameInput = document.querySelector("#username").value
     const questionInput1 = document.querySelector("#question1").value
-    // const questionInput2 = document.querySelector("#question2").value
-    // const questionInput3 = document.querySelector("#question3").value
-    // const questionInput4 = document.querySelector("#question4").value
-    // const questionInput5 = document.querySelector("#question5").value
+    const questionInput2 = document.querySelector("#question2").value
+    const questionInput3 = document.querySelector("#question3").value
+    const questionInput4 = document.querySelector("#question4").value
+    const questionInput5 = document.querySelector("#question5").value
 
-    // console.log(usernameInput, questionInput)
-    // postFetch(usernameInput, questionInput1, questionInput2, questionInput3, questionInput4, questionInput5)
-    postFetch(usernameInput, questionInput1)
-    // question: can I select all my questions at once?
+    postFetch(usernameInput, [questionInput1, questionInput2, questionInput3, questionInput4, questionInput5])
 }
 
-// function postFetch(username, question1, question2, question3, question4, question5) {
-//     fetch(endPoint, {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify({
-//             username: username,
-//             question: question1,
-//             question: question2,
-//             question: question3,
-//             question: question4,
-//             question: question5,
-//             // check these, + sign might be from here
-//         })
-//     })
-//     .then(response => response.json())
-//     .then(question => {
-//         console.log(question);
-//     })
-// }
-
-function postFetch(username, question1) {
+function postFetch(username, questions) {
     fetch(endPoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-            question: {
+            user: {
                 username: username,
-                question: question1,
+                questions: questions
             }
         })
     })
