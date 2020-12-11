@@ -4,18 +4,9 @@ let questionContainer = document.getElementById("open-question").innerHTML // sh
 const createForm = document.querySelector("#create-form")
 
 document.addEventListener('DOMContentLoaded', () => {
-    openQuestion.addEventListener("click", displayQuestion);
+    openQuestion.addEventListener("click", getQuestion);
     createForm.addEventListener("submit", (e) => postForm(e));
 })
-
-function displayQuestion() {
-    if (questionContainer == "") {
-        getQuestion
-    } else {
-        clearContainer(); // run this first?
-        getQuestion();
-    }
-}
 
 function getQuestion() {
     fetch(endPoint)
@@ -26,7 +17,7 @@ function getQuestion() {
         const questionAuthor = random.attributes.user.username
         
         // document.querySelector('#question-container').innerHTML += `"${oneQuestion}"` + ` - ${questionAuthor}`;
-        document.querySelector('#question-container').innerHTML += oneQuestion;
+        document.querySelector('#question-container').innerHTML = oneQuestion;
     })
 }
 
@@ -74,9 +65,10 @@ function postFetch(username, question1) {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-            username: username,
-            question: question1,
-            // check these, + sign might be from here
+            question: {
+                username: username,
+                question: question1,
+            }
         })
     })
     .then(response => response.json())
