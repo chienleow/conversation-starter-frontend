@@ -1,6 +1,6 @@
 const endPoint = "http://localhost:3000/api/v1/questions"
 const openQuestion = document.querySelector("#open-question");
-let questionContainer = document.getElementById("open-question").innerHTML // should I change this back to const?
+const questionContainer = document.getElementById("open-question").innerHTML
 const createForm = document.querySelector("#create-form")
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,12 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
 // button called "shuffle"
 // go through the array from element 1 - 20, once we hit the bottom of the array, display game over
 
+// JS mantra: When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
+// shuffleMethod: When user clicks the shuffle button, I want to shuffle the questionsArray 
+
 // stretch goal: trash box
 // put it first thing in DOMContentLoaded, create a variable, push the question_id to the trash array
 // 1. const unaskedQuestions = questions.filter(question => question.id !== askedQuestion);
 // OR 2. push every time in a trash array
 // when I am passing getQuestion(), pass in 2 arguments (unaskedQuestions, shuffleMethod)
 
+function shuffleMethod(questionsArray) {
+    const currentIndex = questionsArray.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = questionsArray[currentIndex];
+      questionsArray[currentIndex] = questionsArray[randomIndex];
+      questionsArray[randomIndex] = temporaryValue;
+    }
+  
+    return questionsArray;
+}
 
 function getQuestion() {
     fetch(endPoint)
@@ -30,10 +51,6 @@ function getQuestion() {
         // document.querySelector('#question-container').innerHTML += `"${oneQuestion}"` + ` - ${questionAuthor}`;
         document.querySelector('#question-container').innerHTML = oneQuestion;
     })
-}
-
-function clearContainer() {
-    questionContainer = "";
 }
 
 function postForm(e) {

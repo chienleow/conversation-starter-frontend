@@ -12,17 +12,18 @@ JS Mantra: When some event happens, I want to make what kind of fetch and then m
 [ ] When (there is a question already on screen), I want to manipulate the DOM by erasing the question on screen before the next question pops up
 
 Things to fix:
-[ ] do not repeat question
+// done: do not repeat question
 // 1. label each question and use filter to filter all opened questions
 // 2. first shuffled all questions, then display them one by one
 [ ] when refresh, everything is gone?
-[ ] how to make sure it is clear before new append every time?
+// done: how to make sure it is clear before new append every time?
 
 
 
 Stretch goals:
 [ ] reset game button to delete all users and questions
-
+[ ] keep active games, keep a page of active and ended games for record
+[ ] users can resume game
 
 Questions to ask:
 // What does 3 AJAX call means?
