@@ -14,9 +14,8 @@
     <title>Conversation Starter</title>
 </head>
 <body>
-    <h1>Hello There, Welcome to Conversation Starter!</h1>
-
     <div class="container">
+      <h1>Hello There, Welcome to Conversation Starter!</h1>
         <h2>Submit Your Questions</h2>
         <form class="form-horizontal" id="create-form">
           <div class="form-group">
@@ -53,15 +52,19 @@
           </div>
           <div class="form-group">        
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Submit</button>
+              <button type="submit" class="btn btn-secondary">Submit</button>
             </div>
           </div>
         </form>
+        
+        <div class="text-center" id="question-container">
+        </div></br>
+        
+        <div class="text-center">
+          <button type="button" id="shuffle-question" class="btn btn-warning">Shuffle</button>
+          <button type="submit" id="open-question" class="btn btn-success">Open a Question</button>
+        </div><br><br>
       </div>
-
-    <div id="question-container">
-    </div></br>
-    <button id="open-question">Open a Question</button>
     
     <!-- JS Project Tags -->    
     <script type="text/javascript" src="index.js"></script>
