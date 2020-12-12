@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // button called "shuffle"
 // go through the array from element 1 - 20, once we hit the bottom of the array, display game over
 
+// shuffle button (front or back end?)
+// frontend: 1. JS listens to the shuffle button, get the questionsArray from backend, then shuffle it using JS function, store it as a shuffledArray (for the open question function to use later)
+// backend: 1. JS listens to the shuffle button, somehow trigger a Ruby method that shuffles the questionsArray in the backend
+
 // JS mantra: When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
 // shuffleMethod: When user clicks the shuffle button, I want to shuffle the questionsArray 
 
@@ -21,24 +25,32 @@ document.addEventListener('DOMContentLoaded', () => {
 // OR 2. push every time in a trash array
 // when I am passing getQuestion(), pass in 2 arguments (unaskedQuestions, shuffleMethod)
 
-// function shuffleMethod(questionsArray) {
-//     const currentIndex = questionsArray.length, temporaryValue, randomIndex;
+function shuffleMethod(questionsArray) {
+    const currentIndex = questionsArray.length, temporaryValue, randomIndex;
   
-//     // While there remain elements to shuffle...
-//     while (0 !== currentIndex) {
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
   
-//       // Pick a remaining element...
-//       randomIndex = Math.floor(Math.random() * currentIndex);
-//       currentIndex -= 1;
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
   
-//       // And swap it with the current element.
-//       temporaryValue = questionsArray[currentIndex];
-//       questionsArray[currentIndex] = questionsArray[randomIndex];
-//       questionsArray[randomIndex] = temporaryValue;
-//     }
+      // And swap it with the current element.
+      temporaryValue = questionsArray[currentIndex];
+      questionsArray[currentIndex] = questionsArray[randomIndex];
+      questionsArray[randomIndex] = temporaryValue;
+    }
   
-//     return questionsArray;
-// }
+    return questionsArray;
+}
+
+function shuffleButton() {
+    fetch(endPoint)
+    .then(response => response.json())
+    .then(questions => {
+        
+    })
+}
 
 function getQuestion() {
     fetch(endPoint)

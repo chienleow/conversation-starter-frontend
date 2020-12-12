@@ -1,5 +1,7 @@
 MVP MVP MVP!!!
 
+Event, Fetch, DOM
+
 JS Mantra: When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
 
 [ ] Create two buttons, one for submitting questions, one for game
