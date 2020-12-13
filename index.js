@@ -6,7 +6,7 @@ const questionContainer = document.getElementById("open-question").innerHTML
 
 document.addEventListener('DOMContentLoaded', () => {
     createForm.addEventListener("submit", (e) => postForm(e));
-    shuffleButton.addEventListener("click", shuffleMethod);
+    openQuestion.addEventListener("click", shuffleMethod);
     openQuestion.addEventListener("click", getQuestion);
 })
 
@@ -35,7 +35,6 @@ function shuffleMethod() {
         questionsArray[randomIndex] = temporaryValue;
         }
         const shuffledQuestion = questionsArray;
-        document.querySelector('#question-container').innerHTML = "Done shuffling!"
         getQuestion(shuffledQuestion)
     });
 }
