@@ -17,7 +17,9 @@ JS Mantra: When some event happens, I want to make what kind of fetch and then m
 // go through the array from element 1 - 20, once we hit the bottom of the array, display game over
 
 // shuffle button (front or back end?)
-// frontend: 1. JS listens to the shuffle button, get the questionsArray from backend, then shuffle it using JS function, store it as a shuffledArray (for the open question function to use later)
+
+// frontend: 1. JS listens to the shuffle button, get the questionsArray from backend, push all questions into a questionsArray, then shuffle it using JS function, store it as a shuffledArray (for the open question function to use later)
+
 // backend: 1. JS listens to the shuffle button, somehow trigger a Ruby method that shuffles the questionsArray in the backend
 
 // shuffleMethod: When user clicks the shuffle button, I want to shuffle the questionsArray 
