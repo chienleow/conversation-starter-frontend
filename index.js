@@ -1,12 +1,12 @@
 const endPoint = "http://localhost:3000/api/v1/questions"
 const createForm = document.querySelector("#create-form")
-// const shuffleButton = document.querySelector("#shuffle-question")
+const shuffleButton = document.querySelector("#shuffle-question")
 const openQuestion = document.querySelector("#open-question");
 const questionContainer = document.getElementById("open-question").innerHTML
 
 document.addEventListener('DOMContentLoaded', () => {
     createForm.addEventListener("submit", (e) => postForm(e));
-    openQuestion.addEventListener("click", shuffleMethod);
+    shuffleButton.addEventListener("click", shuffleMethod);
     openQuestion.addEventListener("click", getQuestion);
 })
 
@@ -34,16 +34,26 @@ function shuffleMethod() {
         questionsArray[currentIndex] = questionsArray[randomIndex];
         questionsArray[randomIndex] = temporaryValue;
         }
-        const shuffledQuestion = questionsArray;
-        getQuestion(shuffledQuestion)
+
+        return questionsArray;
     });
 }
 
-function getQuestion(shuffledQuestion) {
-    shuffledQuestion.forEach(question => {
-        document.querySelector('#question-container').innerHTML = question;
-    })
-}
+
+
+// if you combined both methods, every single time you click open-question, it is going to shuffle all over
+
+// const shuffledQuestion = shuffleMethod();
+// console.log("hello!!!!", shuffledQuestion)
+// this will grab you the return value from shuffleMethod(); which is questionsArray
+
+// function getQuestion() {
+//     const shuffledQuestion = shuffleMethod();
+
+//     shuffledQuestion.forEach(question => {
+//         document.querySelector('#question-container').innerHTML = question;
+//     })
+// }
 
 // function openQuestion() {
 //     fetch(endPoint)
