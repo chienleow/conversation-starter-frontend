@@ -3,7 +3,7 @@
 
 ## Built With
 - Frontend: [JavaScript](https://www.javascript.com/), [Bootstrap](https://getbootstrap.com/)
-- Backend: [Ruby on Rails](https://rubyonrails.org/), Project Backend Repo:[Conversation Starter Backend](https://github.com/chienleow/conversation-starter-backend) 
+- Backend: [Ruby on Rails](https://rubyonrails.org/), Project Backend Repo: [Conversation Starter Backend](https://github.com/chienleow/conversation-starter-backend) 
 - Database: [PostgreSQL](https://www.postgresql.org/)
 
 ## Contributing
