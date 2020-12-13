@@ -1,5 +1,6 @@
 const endPoint = "http://localhost:3000/api/v1/questions"
-const createForm = document.querySelector("#create-form")
+const createUserForm = document.querySelector("#create-user-form")
+const createQuestionForm = document.querySelector("#create-question-form")
 const openQuestion = document.querySelector("#open-question");
 const questionContainer = document.getElementById("open-question").innerHTML
 
