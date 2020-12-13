@@ -5,7 +5,8 @@ const openQuestion = document.querySelector("#open-question");
 const questionContainer = document.getElementById("open-question").innerHTML
 
 document.addEventListener('DOMContentLoaded', () => {
-    createForm.addEventListener("submit", (e) => postForm(e));
+    createUserForm.addEventListener("submit", (e) => postUserForm(e));
+    createQuestionForm.addEventListener("submit", (e) => postQuestionForm(e));
     openQuestion.addEventListener("click", getQuestion);
 })
 
@@ -22,7 +23,7 @@ function getQuestion() {
     })
 }
 
-function postForm(e) {
+function postUserForm(e) {
     e.preventDefault()
     const usernameInput = document.querySelector("#username").value
     const questionInput1 = document.querySelector("#question1").value
@@ -34,7 +35,7 @@ function postForm(e) {
     postFetch(usernameInput, [questionInput1, questionInput2, questionInput3, questionInput4, questionInput5])
 }
 
-function postFetch(username, questions) {
+function postUserFetch(username, questions) {
     fetch(endPoint, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
