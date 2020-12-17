@@ -7,7 +7,9 @@ JS Mantra: When some event happens, I want to make what kind of fetch and then m
 [ ] Create two buttons, one for submitting questions, one for game
 [ ] Create two forms, one for username, then one for questions
  
-[ ] When user (enter their username and questions in a form), I want to (post the data to the backend API) and then manipulate the DOM by (showing user their username and questions have been saved)
+[ ] When user (enter their username and questions in a form), I want to (post the data to the backend API) and then manipulate the DOM by (showing user their username has been saved)
+
+[ ] When user (enter their 1st question in a form), I want to (post the data to the backend API) and then manipulate the DOM by (showing user their question has been saved) and (append another form)
 
 [ ] When user (click on the "open a question" button), I want to (get questions from the backend API - select random question) and then manipulate the DOM by (appending the questions from backend API to the frontend HTML), so users can see the questions ONE at a time
 
@@ -46,6 +48,5 @@ Stretch goals:
 [ ] users can resume game
 
 Questions to ask:
-// What does 3 AJAX call means?
-// Can I post a form with multiple values of the SAME attribute?
-// Can I post a form with values going to two different classes?
+// Does it count as a full AJAX call? If I am just posting the data to the backend, but not appending to the front end right away?
+// WHat does the error in my terminal mean? It has been there for awhile
