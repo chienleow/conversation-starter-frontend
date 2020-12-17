@@ -10,19 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     openQuestion.addEventListener("click", getQuestion);
 })
 
-function getQuestion() {
-    fetch(endPoint)
-    .then(response => response.json())
-    .then(questions => {
-        const random = questions.data[Math.floor(Math.random() * questions.data.length)];
-        const oneQuestion = random.attributes.question;
-        const questionAuthor = random.attributes.user.username
-        
-        document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-        // document.querySelector('#question-container').innerHTML = oneQuestion;
-    })
-}
-
 function postUserForm(e) {
     e.preventDefault()
     const usernameInput = document.querySelector("#username").value
@@ -39,8 +26,26 @@ function postUserFetch(username) {
         })
     })
     .then(response => response.json())
-    .then(username => {
-        console.log(username);
+    .then(user => {
+        let newUserHTML = `
+            <div class="card">
+                <h3>Welcome, ${user.username}</h3>
+            </div>    
+        `
+        createUserForm.innerHTML = newUserHTML;
+    })
+}
+
+function getQuestion() {
+    fetch(endPoint)
+    .then(response => response.json())
+    .then(questions => {
+        const random = questions.data[Math.floor(Math.random() * questions.data.length)];
+        const oneQuestion = random.attributes.question;
+        const questionAuthor = random.attributes.user.username
+        
+        document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
+        // document.querySelector('#question-container').innerHTML = oneQuestion;
     })
 }
 
