@@ -1,7 +1,8 @@
-const endPoint = "http://localhost:3000/api/v1/questions"
+const endPoint = "http://localhost:3000/api/v1"
+const container = document.querySelector(".container")
 const createUserForm = document.querySelector("#create-user-form")
 const createQuestionForm = document.querySelector("#create-question-form")
-const openQuestion = document.querySelector("#open-question");
+const openQuestion = document.querySelector("#open-question")
 const questionContainer = document.getElementById("open-question").innerHTML
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +19,7 @@ function postUserForm(e) {
 }
 
 function postUserFetch(username) {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch(endPoint + `/users`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -38,6 +39,7 @@ function postUserFetch(username) {
                 <label class="control-label col-sm-2" for="question">Question 1:</label>
                 <div class="col-sm-10">          
                     <input type="text" class="form-control" id="question" placeholder="Enter question" name="question">
+                    <input type="hidden" id="user-id" value="${user.id}">
                 </div><br>
             </div>
             <div class="form-group">        
@@ -47,12 +49,12 @@ function postUserFetch(username) {
             </div>
         </form>
         `
-        createUserForm.innerHTML = newUserHTML + questionFormOne;
+        container.innerHTML = newUserHTML + questionFormOne;
     })
 }
 
 function getQuestion() {
-    fetch(endPoint)
+    fetch(endPoint + `/questions`)
     .then(response => response.json())
     .then(questions => {
         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
@@ -64,26 +66,28 @@ function getQuestion() {
     })
 }
 
-function postUserForm(e) {
+function postQuestionForm(e) {
     e.preventDefault()
-    const questionInput = document.querySelector("#question").value
+    const questionInput = document.querySelector("#question")
+    const userId = document.querySelector("#user-id")
+    console.log(questionInput, userId)
 
-    postFetch(question)
+    // postFetch(questionInput)
 }
 
-function postUserFetch(question) {
-    fetch(endPoint, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            user: {
-                username: username,
-                questions: questions
-            }
-        })
-    })
-    .then(response => response.json())
-    .then(question => {
-        console.log(question);
-    })
-}
+// function postUserFetch(question, user_id) {
+//     fetch(endPoint, {
+//         method: "POST",
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify({
+//             user: {
+//                 username: username,
+//                 questions: questions
+//             }
+//         })
+//     })
+//     .then(response => response.json())
+//     .then(question => {
+//         console.log(question);
+//     })
+// }
