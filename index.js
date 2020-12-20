@@ -1,9 +1,7 @@
-const createUserForm = document.querySelector("#create-user-form")
-const openQuestion = document.querySelector("#open-question")
-const questionContainer = document.getElementById("open-question").innerHTML
-
 document.addEventListener('DOMContentLoaded', () => {
+    const createUserForm = document.querySelector("#create-user-form")
     createUserForm.addEventListener("submit", postUserForm);
+    const openQuestion = document.querySelector("#open-question")
     openQuestion.addEventListener("click", getQuestion);
 })
 
