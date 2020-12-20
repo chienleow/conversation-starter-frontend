@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const createUserForm = document.querySelector("#create-user-form")
     createUserForm.addEventListener("submit", postUserForm);
+
     const openQuestion = document.querySelector("#open-question")
     openQuestion.addEventListener("click", getQuestion);
+
+    const endSubmission = document.querySelector("#end-submission")
+    endSubmission.addEventListener("click, )
 })
 
 function postUserForm(e) {
