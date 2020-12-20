@@ -1,14 +1,12 @@
 const endPoint = "http://localhost:3000/api/v1"
 const container = document.querySelector(".container")
 const createUserForm = document.querySelector("#create-user-form")
-const createQuestionForm = document.querySelector("#create-question-form")
 const openQuestion = document.querySelector("#open-question")
 const questionContainer = document.getElementById("open-question").innerHTML
 
 document.addEventListener('DOMContentLoaded', () => {
-    createUserForm.addEventListener("submit", (e) => postUserForm(e));
-    createQuestionForm.addEventListener("submit", (e) => postQuestionForm(e));
-    openQuestion.addEventListener("click", getQuestion);
+    createUserForm.addEventListener("submit", postUserForm);
+    // openQuestion.addEventListener("click", getQuestion);
 })
 
 function postUserForm(e) {
@@ -28,15 +26,16 @@ function postUserFetch(username) {
     })
     .then(response => response.json())
     .then(user => {
+        // debugger
         let newUserHTML = `
             <div class="card">
                 <h3>Welcome, ${user.username}</h3>
             </div>    
         `
-        let questionFormOne = `
+        let questionForm = `
         <form class="form-horizontal" id="create-question-form">
             <div class="form-group">
-                <label class="control-label col-sm-2" for="question">Question 1:</label>
+                <label class="control-label col-sm-2" for="question">Question:</label>
                 <div class="col-sm-10">          
                     <input type="text" class="form-control" id="question" placeholder="Enter question" name="question">
                     <input type="hidden" id="user-id" value="${user.id}">
@@ -49,45 +48,65 @@ function postUserFetch(username) {
             </div>
         </form>
         `
-        container.innerHTML = newUserHTML + questionFormOne;
+        container.innerHTML = newUserHTML + questionForm;
+        const createQuestionForm = document.querySelector("#create-question-form");
+        createQuestionForm.addEventListener("submit", (e) => 
+        postQuestionForm(e, user.id));
     })
 }
 
-function getQuestion() {
-    fetch(endPoint + `/questions`)
-    .then(response => response.json())
-    .then(questions => {
-        const random = questions.data[Math.floor(Math.random() * questions.data.length)];
-        const oneQuestion = random.attributes.question;
-        const questionAuthor = random.attributes.user.username
-        
-        document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-        // document.querySelector('#question-container').innerHTML = oneQuestion;
-    })
-}
-
-function postQuestionForm(e) {
+function postQuestionForm(e, user_id) {
     e.preventDefault()
-    const questionInput = document.querySelector("#question")
-    const userId = document.querySelector("#user-id")
-    console.log(questionInput, userId)
-
-    // postFetch(questionInput)
+    const questionInput = document.querySelector("#question").value
+    // const userId = parseInt(user_id)
+    console.log(questionInput, user_id)
+    postQuestionFetch(questionInput, user_id)
 }
 
-// function postUserFetch(question, user_id) {
-//     fetch(endPoint, {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify({
-//             user: {
-//                 username: username,
-//                 questions: questions
-//             }
-//         })
-//     })
+function postQuestionFetch(question, user_id) {
+    fetch(endPoint + `/questions`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            question: {
+                question: question,
+                user_id: user_id
+            }
+        })
+    })
+
+    let questionForm = `
+    <form class="form-horizontal" id="create-question-form">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="question">Question:</label>
+            <div class="col-sm-10">          
+                <input type="text" class="form-control" id="question" placeholder="Enter question" name="question">
+                <input type="hidden" id="user-id" value="${user.id}">
+            </div><br>
+        </div>
+        <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
+        </div>
+    </form>
+    `
+    container.innerHTML = questionForm;
+    const createQuestionForm = document.querySelector("#create-question-form");
+    createQuestionForm.addEventListener("submit", (e) => 
+    postQuestionForm(e, user.id));
+
+}
+
+// function getQuestion() {
+//     fetch(endPoint + `/questions`)
 //     .then(response => response.json())
-//     .then(question => {
-//         console.log(question);
+//     .then(questions => {
+//         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
+//         const oneQuestion = random.attributes.question;
+//         const questionAuthor = random.attributes.user.username
+        
+//         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
+//         // document.querySelector('#question-container').innerHTML = oneQuestion;
 //     })
 // }
