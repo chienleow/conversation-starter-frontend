@@ -58,7 +58,6 @@ function postUserFetch(username) {
 function postQuestionForm(e, user_id) {
     e.preventDefault()
     const questionInput = document.querySelector("#question").value
-    // const userId = parseInt(user_id)
     console.log(questionInput, user_id)
     postQuestionFetch(questionInput, user_id)
 }
@@ -98,15 +97,15 @@ function postQuestionFetch(question, user_id) {
 
 }
 
-// function getQuestion() {
-//     fetch(endPoint + `/questions`)
-//     .then(response => response.json())
-//     .then(questions => {
-//         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
-//         const oneQuestion = random.attributes.question;
-//         const questionAuthor = random.attributes.user.username
+function getQuestion() {
+    fetch(endPoint + `/questions`)
+    .then(response => response.json())
+    .then(questions => {
+        const random = questions.data[Math.floor(Math.random() * questions.data.length)];
+        const oneQuestion = random.attributes.question;
+        const questionAuthor = random.attributes.user.username
         
-//         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-//         // document.querySelector('#question-container').innerHTML = oneQuestion;
-//     })
-// }
+        document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
+        // document.querySelector('#question-container').innerHTML = oneQuestion;
+    })
+}
