@@ -1,4 +1,3 @@
-const endPoint = "http://localhost:3000/api/v1"
 const container = document.querySelector(".container")
 const createUserForm = document.querySelector("#create-user-form")
 const openQuestion = document.querySelector("#open-question")
@@ -6,7 +5,7 @@ const questionContainer = document.getElementById("open-question").innerHTML
 
 document.addEventListener('DOMContentLoaded', () => {
     createUserForm.addEventListener("submit", postUserForm);
-    // openQuestion.addEventListener("click", getQuestion);
+    openQuestion.addEventListener("click", getQuestion);
 })
 
 function postUserForm(e) {
@@ -17,7 +16,7 @@ function postUserForm(e) {
 }
 
 function postUserFetch(username) {
-    fetch(endPoint + `/users`, {
+    fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -26,7 +25,6 @@ function postUserFetch(username) {
     })
     .then(response => response.json())
     .then(user => {
-        // debugger
         let newUserHTML = `
             <div class="card">
                 <h3>Welcome, ${user.username}</h3>
@@ -63,7 +61,7 @@ function postQuestionForm(e, user_id) {
 }
 
 function postQuestionFetch(question, user_id) {
-    fetch(endPoint + `/questions`, {
+    fetch("http://localhost:3000/api/v1/questions", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -98,7 +96,7 @@ function postQuestionFetch(question, user_id) {
 }
 
 function getQuestion() {
-    fetch(endPoint + `/questions`)
+    fetch("http://localhost:3000/api/v1/questions")
     .then(response => response.json())
     .then(questions => {
         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
