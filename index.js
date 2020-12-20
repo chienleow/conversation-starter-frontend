@@ -1,4 +1,3 @@
-const container = document.querySelector(".container")
 const createUserForm = document.querySelector("#create-user-form")
 const openQuestion = document.querySelector("#open-question")
 const questionContainer = document.getElementById("open-question").innerHTML
@@ -46,7 +45,13 @@ function postUserFetch(username) {
             </div>
         </form>
         `
-        container.innerHTML = newUserHTML + questionForm;
+        let endSubmissionButton = `
+        <div class="text-center">
+            <button type="submit" id="end-submission" class="btn btn-primary">Done Submitting Questions</button>
+        </div><br><br>
+        `
+        const container = document.querySelector(".container")
+        container.innerHTML = newUserHTML + questionForm + endSubmissionButton;
         const createQuestionForm = document.querySelector("#create-question-form");
         createQuestionForm.addEventListener("submit", (e) => 
         postQuestionForm(e, user.id));
@@ -88,6 +93,7 @@ function postQuestionFetch(question, user_id) {
         </div>
     </form>
     `
+    const container = document.querySelector(".container")
     container.innerHTML = questionForm;
     const createQuestionForm = document.querySelector("#create-question-form");
     createQuestionForm.addEventListener("submit", (e) => 
