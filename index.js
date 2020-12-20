@@ -58,7 +58,6 @@ function postUserFetch(username) {
 function postQuestionForm(e, user_id) {
     e.preventDefault()
     const questionInput = document.querySelector("#question").value
-    // const userId = parseInt(user_id)
     console.log(questionInput, user_id)
     postQuestionFetch(questionInput, user_id)
 }
@@ -81,7 +80,7 @@ function postQuestionFetch(question, user_id) {
             <label class="control-label col-sm-2" for="question">Question:</label>
             <div class="col-sm-10">          
                 <input type="text" class="form-control" id="question" placeholder="Enter question" name="question">
-                <input type="hidden" id="user-id" value="${user.id}">
+                <input type="hidden" id="user-id" value="${user_id}">
             </div><br>
         </div>
         <div class="form-group">        
@@ -94,19 +93,19 @@ function postQuestionFetch(question, user_id) {
     container.innerHTML = questionForm;
     const createQuestionForm = document.querySelector("#create-question-form");
     createQuestionForm.addEventListener("submit", (e) => 
-    postQuestionForm(e, user.id));
+    postQuestionForm(e, user_id));
 
 }
 
-// function getQuestion() {
-//     fetch(endPoint + `/questions`)
-//     .then(response => response.json())
-//     .then(questions => {
-//         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
-//         const oneQuestion = random.attributes.question;
-//         const questionAuthor = random.attributes.user.username
+function getQuestion() {
+    fetch(endPoint + `/questions`)
+    .then(response => response.json())
+    .then(questions => {
+        const random = questions.data[Math.floor(Math.random() * questions.data.length)];
+        const oneQuestion = random.attributes.question;
+        const questionAuthor = random.attributes.user.username
         
-//         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-//         // document.querySelector('#question-container').innerHTML = oneQuestion;
-//     })
-// }
+        document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
+        // document.querySelector('#question-container').innerHTML = oneQuestion;
+    })
+}
