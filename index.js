@@ -91,8 +91,13 @@ function postQuestionFetch(question, user_id) {
         </div>
     </form>
     `
+    let endSubmissionButton = `
+    <div class="text-center">
+        <button type="submit" id="end-submission" class="btn btn-primary">Done Submitting Questions</button>
+    </div><br><br>
+    `
     const container = document.querySelector(".container")
-    container.innerHTML = questionForm;
+    container.innerHTML = questionForm + endSubmissionButton;
     const createQuestionForm = document.querySelector("#create-question-form");
     createQuestionForm.addEventListener("submit", (e) => 
     postQuestionForm(e, user_id));
@@ -108,6 +113,5 @@ function getQuestion() {
         const questionAuthor = random.attributes.user.username
         
         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-        // document.querySelector('#question-container').innerHTML = oneQuestion;
     })
 }
