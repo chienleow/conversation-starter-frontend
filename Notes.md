@@ -6,7 +6,6 @@ JS Mantra: When some event happens, I want to make what kind of fetch and then m
 
 Wrapping up to-do-list:
 Sunday 12/20
-[ ] give user the option to go back to open question (make it at the bottom of all question forms)
 [ ] refactor OOJS 
 
 ----------------------------------------------
