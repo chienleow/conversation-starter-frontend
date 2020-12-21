@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const createUserForm = document.querySelector("#create-user-form")
     createUserForm.addEventListener("submit", postUserForm);
-
-    const openQuestion = document.querySelector("#open-question")
-    openQuestion.addEventListener("click", getQuestion);
-
-    const endSubmission = document.querySelector("#end-submission")
-    endSubmission.addEventListener("click, )
 })
 
 function postUserForm(e) {
@@ -54,9 +48,16 @@ function postUserFetch(username) {
         `
         const container = document.querySelector(".container")
         container.innerHTML = newUserHTML + questionForm + endSubmissionButton;
+        
         const createQuestionForm = document.querySelector("#create-question-form");
         createQuestionForm.addEventListener("submit", (e) => 
         postQuestionForm(e, user.id));
+        
+        const endSubmission = document.querySelector("#end-submission")
+        endSubmission.addEventListener("click", backToOpenQuestion);
+
+        const openQuestion = document.querySelector("#open-question")
+        openQuestion.addEventListener("click", getQuestion);
     })
 }
 
@@ -106,6 +107,11 @@ function postQuestionFetch(question, user_id) {
     createQuestionForm.addEventListener("submit", (e) => 
     postQuestionForm(e, user_id));
 
+    const endSubmission = document.querySelector("#end-submission")
+    endSubmission.addEventListener("click", backToOpenQuestion);
+
+    const openQuestion = document.querySelector("#open-question")
+    openQuestion.addEventListener("click", getQuestion);
 }
 
 function getQuestion() {
@@ -118,4 +124,14 @@ function getQuestion() {
         
         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
     })
+}
+
+function backToOpenQuestion() {
+    let openQuestionButton = `
+    <div class="text-center">
+        <button type="submit" id="open-question" class="btn btn-success">Open a Question</button>
+    </div><br><br>
+    `
+    const container = document.querySelector(".container")
+    container.innerHTML = openQuestionButton;
 }
