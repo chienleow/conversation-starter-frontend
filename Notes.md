@@ -9,6 +9,8 @@ Sunday 12/20
 [ ] give user the option to go back to open question (make it at the bottom of all question forms)
 [ ] refactor OOJS 
 
+----------------------------------------------
+
 [ ] Create two buttons, one for submitting questions, one for game
 [ ] Create two forms, one for username, then one for questions
  

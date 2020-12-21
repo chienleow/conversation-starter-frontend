@@ -1,12 +1,6 @@
-const endPoint = "http://localhost:3000/api/v1"
-const container = document.querySelector(".container")
-const createUserForm = document.querySelector("#create-user-form")
-const openQuestion = document.querySelector("#open-question")
-const questionContainer = document.getElementById("open-question").innerHTML
-
 document.addEventListener('DOMContentLoaded', () => {
+    const createUserForm = document.querySelector("#create-user-form")
     createUserForm.addEventListener("submit", postUserForm);
-    // openQuestion.addEventListener("click", getQuestion);
 })
 
 function postUserForm(e) {
@@ -17,7 +11,7 @@ function postUserForm(e) {
 }
 
 function postUserFetch(username) {
-    fetch(endPoint + `/users`, {
+    fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -26,7 +20,6 @@ function postUserFetch(username) {
     })
     .then(response => response.json())
     .then(user => {
-        // debugger
         let newUserHTML = `
             <div class="card">
                 <h3>Welcome, ${user.username}</h3>
@@ -48,22 +41,31 @@ function postUserFetch(username) {
             </div>
         </form>
         `
-        container.innerHTML = newUserHTML + questionForm;
+        let endSubmissionButton = `
+        <div class="text-center">
+            <button type="submit" id="end-submission" class="btn btn-primary">Done Submitting Questions</button>
+        </div><br><br>
+        `
+        const container = document.querySelector(".container")
+        container.innerHTML = newUserHTML + questionForm + endSubmissionButton;
+        
         const createQuestionForm = document.querySelector("#create-question-form");
         createQuestionForm.addEventListener("submit", (e) => 
         postQuestionForm(e, user.id));
+        
+        const endSubmission = document.querySelector("#end-submission")
+        endSubmission.addEventListener("click", backToOpenQuestion);
     })
 }
 
 function postQuestionForm(e, user_id) {
     e.preventDefault()
     const questionInput = document.querySelector("#question").value
-    console.log(questionInput, user_id)
     postQuestionFetch(questionInput, user_id)
 }
 
 function postQuestionFetch(question, user_id) {
-    fetch(endPoint + `/questions`, {
+    fetch("http://localhost:3000/api/v1/questions", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
@@ -90,15 +92,23 @@ function postQuestionFetch(question, user_id) {
         </div>
     </form>
     `
-    container.innerHTML = questionForm;
+    let endSubmissionButton = `
+    <div class="text-center">
+        <button type="submit" id="end-submission" class="btn btn-primary">Done Submitting Questions</button>
+    </div><br><br>
+    `
+    const container = document.querySelector(".container")
+    container.innerHTML = questionForm + endSubmissionButton;
     const createQuestionForm = document.querySelector("#create-question-form");
     createQuestionForm.addEventListener("submit", (e) => 
     postQuestionForm(e, user_id));
 
+    const endSubmission = document.querySelector("#end-submission")
+    endSubmission.addEventListener("click", backToOpenQuestion);
 }
 
 function getQuestion() {
-    fetch(endPoint + `/questions`)
+    fetch("http://localhost:3000/api/v1/questions")
     .then(response => response.json())
     .then(questions => {
         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
@@ -106,6 +116,21 @@ function getQuestion() {
         const questionAuthor = random.attributes.user.username
         
         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-        // document.querySelector('#question-container').innerHTML = oneQuestion;
     })
+}
+
+function backToOpenQuestion() {
+    let questionContainer = `
+    <div class="text-center" id="question-container"></div></br>
+    `
+    let openQuestionButton = `
+    <div class="text-center">
+        <button type="submit" id="open-question" class="btn btn-success">Open a Question</button>
+    </div><br><br>
+    `
+    const container = document.querySelector(".container")
+    container.innerHTML = questionContainer + openQuestionButton;
+
+    const openQuestion = document.querySelector("#open-question")
+    openQuestion.addEventListener("click", getQuestion);
 }
