@@ -55,16 +55,12 @@ function postUserFetch(username) {
         
         const endSubmission = document.querySelector("#end-submission")
         endSubmission.addEventListener("click", backToOpenQuestion);
-
-        const openQuestion = document.querySelector("#open-question")
-        openQuestion.addEventListener("click", getQuestion);
     })
 }
 
 function postQuestionForm(e, user_id) {
     e.preventDefault()
     const questionInput = document.querySelector("#question").value
-    console.log(questionInput, user_id)
     postQuestionFetch(questionInput, user_id)
 }
 
@@ -109,9 +105,6 @@ function postQuestionFetch(question, user_id) {
 
     const endSubmission = document.querySelector("#end-submission")
     endSubmission.addEventListener("click", backToOpenQuestion);
-
-    const openQuestion = document.querySelector("#open-question")
-    openQuestion.addEventListener("click", getQuestion);
 }
 
 function getQuestion() {
@@ -127,11 +120,17 @@ function getQuestion() {
 }
 
 function backToOpenQuestion() {
+    let questionContainer = `
+    <div class="text-center" id="question-container"></div></br>
+    `
     let openQuestionButton = `
     <div class="text-center">
         <button type="submit" id="open-question" class="btn btn-success">Open a Question</button>
     </div><br><br>
     `
     const container = document.querySelector(".container")
-    container.innerHTML = openQuestionButton;
+    container.innerHTML = questionContainer + openQuestionButton;
+
+    const openQuestion = document.querySelector("#open-question")
+    openQuestion.addEventListener("click", getQuestion);
 }
