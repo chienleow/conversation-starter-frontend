@@ -5,7 +5,6 @@ class User {
         this.id = id
     }    
 
-
     static postForm(e) {
         e.preventDefault()
         const usernameInput = document.querySelector("#username").value
