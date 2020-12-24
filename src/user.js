@@ -24,6 +24,7 @@ class User {
         .then(response => response.json())
         .then(user => {
             let newUser = new User(user.username, user.id)
+            // debugger
             let newUserHTML = `
                 <div class="card">
                     <h3>Welcome, ${newUser.username}</h3>
@@ -58,7 +59,7 @@ class User {
             Question.postForm(e, newUser.id));
             
             const endSubmission = document.querySelector("#end-submission")
-            endSubmission.addEventListener("click", backToOpenQuestion);
+            endSubmission.addEventListener("click", () => Question.backButton());
         })
     }
 }
