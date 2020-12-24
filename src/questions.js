@@ -8,3 +8,7 @@ class Question {
 
 // getQuestion will just grab all the questions in index.js
 // renderQuestion will randomize from the array, then show one question at a time
+
+// create user a JS class
+// render the form
+// 
