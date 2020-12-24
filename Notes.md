@@ -4,10 +4,6 @@ Event, Fetch, DOM
 
 JS Mantra: When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
 
-Wrapping up to-do-list:
-Sunday 12/20
-[ ] refactor OOJS 
-
 ----------------------------------------------
 
 [ ] Create two buttons, one for submitting questions, one for game
