@@ -24,6 +24,7 @@ class User {
         .then(user => {
             let newUser = new User(user.username, user.id)
             User.currentUser = newUser
+            
             Question.renderForm()
             
             const createQuestionForm = document.querySelector("#create-question-form");

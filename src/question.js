@@ -8,6 +8,7 @@ class Question {
     static postForm(e, user_id) {
         e.preventDefault()
         const questionInput = document.querySelector("#question").value
+        
         Question.postFetch(questionInput, user_id)
     }
 
