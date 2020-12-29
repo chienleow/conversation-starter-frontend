@@ -64,43 +64,43 @@ class Question {
         container.innerHTML = newUserHTML + questionForm + endSubmissionButton;
     }
 
-    // static getAll() {
-    //     fetch("http://localhost:3000/api/v1/questions")
-    //     .then(response => response.json())
-    //     .then(questions => {
-    //         const random = questions.data[Math.floor(Math.random() * questions.data.length)];
-    //         const oneQuestion = random.attributes.question;
-    //         const questionAuthor = random.attributes.user.username
-            
-    //         document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-    //     })
-    // }
-
-    
     static getAll() {
         fetch("http://localhost:3000/api/v1/questions")
         .then(response => response.json())
         .then(questions => {
-            questions.data.sort(function (a, b) {
-                const questionA = a.attributes.question;
-                const questionB = b.attributes.question;
-                if (questionA < questionB) {
-                    return -1;
-                }
-                if (questionA > questionB) {
-                    return 1;
-                }
-                return 0;
-            })
-            questions.data.forEach(question => {
-                const oneQuestion = question.attributes.question;
-                console.log(oneQuestion)
-                const questionAuthor = question.attributes.user.username;
-                
-                document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
-                })
-            })
+            const random = questions.data[Math.floor(Math.random() * questions.data.length)];
+            const oneQuestion = random.attributes.question;
+            const questionAuthor = random.attributes.user.username
+            
+            document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
+        })
     }
+
+    
+    // static getAll() {
+    //     fetch("http://localhost:3000/api/v1/questions")
+    //     .then(response => response.json())
+    //     .then(questions => {
+    //         questions.data.sort(function (a, b) {
+    //             const questionA = a.attributes.question;
+    //             const questionB = b.attributes.question;
+    //             if (questionA < questionB) {
+    //                 return -1;
+    //             }
+    //             if (questionA > questionB) {
+    //                 return 1;
+    //             }
+    //             return 0;
+    //         })
+    //         questions.data.forEach(question => {
+    //             const oneQuestion = question.attributes.question;
+    //             console.log(oneQuestion)
+    //             const questionAuthor = question.attributes.user.username;
+                
+    //             document.querySelector('#question-container').innerHTML = `"${oneQuestion}"` + ` - ${questionAuthor}`;
+    //             })
+    //         })
+    // }
 
     static backButton() {
         let questionContainer = `
